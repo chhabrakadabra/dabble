@@ -44,7 +44,10 @@ class Segment(dict[K, V]):
         In other future implementations we'll also look at what happens when we can't load all the
         keys into memory.
         """
-        all_keys = sorted(  # Sorted for consistency for test assertions
+        # The keys below are sorted only for testing. If this were a real database, I wouldn't take
+        # on sorting so casually, unless I was able to leverage it for performance. We'll come back
+        # to this idea in the SSTable implementation.
+        all_keys = sorted(
             list(
                 reduce(
                     lambda key_set, segment: key_set.union(set(segment)),
