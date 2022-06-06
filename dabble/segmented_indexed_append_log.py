@@ -75,11 +75,6 @@ class Segment(dict[K, V]):
     def __iter__(self) -> Iterator[K]:
         return iter(self._index)
 
-    # def __next__(self):
-    #     for key, _ in self._iter_items():
-    #         yield key
-    #     raise StopIteration
-
     def _iter_lines(self):
         with self._path.open("rt") as f:
             yield from f.readlines()
